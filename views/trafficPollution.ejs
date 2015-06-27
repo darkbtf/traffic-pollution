@@ -1,0 +1,95 @@
+<h1>空污監測站 vs 行政區車流量</h1>
+<select id="site" class="ui search dropdown">
+  <option value="士林">士林</option>
+  <option value="古亭">古亭</option>
+  <option value="松山">松山</option>
+  <option value="大同">大同</option>
+  <option value="中山">中山</option>
+  <option value="萬華">萬華</option>
+  <option value="陽明">陽明</option>
+</select>
+<select id="district" class="ui search dropdown">
+  <option value="中山區">中山區</option>
+  <option value="中正區">中正區</option>
+  <option value="信義區">信義區</option>
+  <option value="內湖區">內湖區</option>
+  <option value="北投區">北投區</option>
+  <option value="南港區">南港區</option>
+  <option value="士林區">士林區</option>
+  <option value="大同區">大同區</option>
+  <option value="大安區">大安區</option>
+  <option value="文山區">文山區</option>
+  <option value="松山區">松山區</option>
+  <option value="萬華區">萬華區</option>
+</select>
+<div id="query-button" class="ui green button">
+	查詢
+</div>
+<div>
+	<div class="ui radio checkbox">
+	  <input type="radio" name="chart" checked="true" value="hour">
+	  <label>小時</label>
+	</div>
+	<div class="ui radio checkbox">
+	  <input type="radio" name="chart" value="interval">
+	  <label>三小時</label>
+	</div>
+	<div class="ui radio checkbox">
+	  <input type="radio" name="chart" value="day">
+	  <label>日</label>
+	</div>
+	<div class="ui radio checkbox">
+	  <input type="radio" name="chart" value="shour">
+	  <label>小時統計</label>
+	</div>
+	<div class="ui radio checkbox">
+	  <input type="radio" name="chart" value="sinterval">
+	  <label>三小時統計</label>
+	</div>
+	<div class="ui radio checkbox">
+	  <input type="radio" name="chart" value="weekday">
+	  <label>星期統計</label>
+	</div>
+</div>
+<div>
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" checked="checked" value="psi">
+	  <label>PSI</label>
+	</div>
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" value="so2">
+	  <label>SO2</label>
+	</div>
+
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" value="co">
+	  <label>CO</label>
+	</div>
+
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" value="o3">
+	  <label>O3</label>
+	</div>
+
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" value="pm10">
+	  <label>PM10</label>
+	</div>
+
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" value="pm25">
+	  <label>PM2.5</label>
+	</div>
+
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" value="no2">
+	  <label>NO2</label>
+	</div>
+</div>
+<div class="ui segment">
+	<div id="container" width="1000" height="600"></div> 
+	<div class="ui dimmer">
+	  <div class="ui loader"></div>
+	</div>
+</div>
+<script src="/js/trafficPollution.js"></script>

@@ -1,0 +1,55 @@
+<h1>監測站空污預測</h1>
+<select id="site" class="ui search dropdown">
+  <option value="士林">士林</option>
+  <option value="古亭">古亭</option>
+  <option value="松山">松山</option>
+  <option value="大同">大同</option>
+  <option value="中山">中山</option>
+  <option value="萬華">萬華</option>
+  <option value="陽明">陽明</option>
+</select>
+<div id="query-button" class="ui green button">
+	查詢
+</div>
+<div>
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" checked="checked" value="PSI">
+	  <label>PSI</label>
+	</div>
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" checked="checked" value="SO2">
+	  <label>SO2</label>
+	</div>
+
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" checked="checked" value="CO">
+	  <label>CO</label>
+	</div>
+
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" checked="checked" value="O3">
+	  <label>O3</label>
+	</div>
+
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" checked="checked" value="PM10">
+	  <label>PM10</label>
+	</div>
+
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" checked="checked" value="PM25">
+	  <label>PM2.5</label>
+	</div>
+
+	<div class="ui radio checkbox">
+	  <input type="radio" name="pollutant" checked="checked" value="NO2">
+	  <label>NO2</label>
+	</div>
+</div>
+<div class="ui segment">
+	<div id="container" width="1000" height="600"></div> 
+	<div class="ui dimmer">
+	  <div class="ui loader"></div>
+	</div>
+</div>
+<script src="/js/pollutionForecast.js"></script>
