@@ -90,6 +90,7 @@ var queryTraffic = function(traffic) {
   						     'time.month AS month, ' +
   						     'time.hour AS hour, ' +
   						     'time.day AS day, ' +
+  						     'time.week AS week, ' +
   						     'time.interval AS `interval`, ' +
   						     'time.weekday AS weekday,  ' +
   						     'avg(vd_fact.avg_speed) AS avg_speed, ' +
