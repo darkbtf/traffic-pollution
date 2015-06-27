@@ -27,11 +27,24 @@ var weekdayStr2Int = function(s) {
 	if (s === 'Sun') return 6;
 };
 
+var queryPredict = function(site) {
+	return function(cb) {
+		var queryStr = 'SELECT * FROM predict, time ' +
+								'WHERE ' +
+								'predict.site_name="' + site + '" AND ' +
+								'predict.time_key=time.time_key;';
+		Pollution.query(queryStr, function(err, result) {
+				if (err || !result) cb('error');
+				else cb(null, result);
+		});
+	};
+};
+
 var queryPollution = function(site) {
 	return function(cb) {
 		var queryStr = 'SELECT * FROM pollution_fact, time ' +
 									'WHERE ' +
-									'pollution_fact.site_name="中山" AND ' +
+									'pollution_fact.site_name="' + site + '" AND ' +
 									'pollution_fact.time_key=time.time_key;';
 		Pollution.query(queryStr, function(err, result) {
 				//console.log(err, result);
@@ -42,7 +55,6 @@ var queryPollution = function(site) {
 };
 
 var queryDistrictTraffic = function(district) {
-	console.log(district);
 	var queryStr = 'SELECT month, hour, day, `interval`, weekday, sum(total_volume) AS total_volume FROM ( ' +
 									'SELECT location.district_start AS district_start, ' +
 									'time.month AS month, ' +
@@ -91,7 +103,6 @@ var queryTraffic = function(traffic) {
   						     'GROUP BY time.month, time.hour, time.day;';
 		VD.query(queryStr, 
 			function(err, result) {
-				console.log(err, result);
 				if (err || !result) cb('error');
 				else {
 					result.sort(sortByDate);
@@ -163,6 +174,17 @@ module.exports = {
 				traffic2: results[1]
 			});
 		});
+	},
+	pollutantPredict: function(req, res) {
+		var site = req.body.site;
+
+		async.parallel([
+			queryPredict(site)
+		], function(cb, results) {
+			res.json({
+				forecast: results[0]
+			});
+		});		
 	}
 };
 

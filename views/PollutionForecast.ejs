@@ -1,4 +1,4 @@
-<h1>監測站空污預測</h1>
+<h1>空污監測站預測</h1>
 <select id="site" class="ui search dropdown">
   <option value="士林">士林</option>
   <option value="古亭">古亭</option>
@@ -12,39 +12,32 @@
 	查詢
 </div>
 <div>
+<div>
 	<div class="ui radio checkbox">
-	  <input type="radio" name="pollutant" checked="checked" value="PSI">
-	  <label>PSI</label>
-	</div>
-	<div class="ui radio checkbox">
-	  <input type="radio" name="pollutant" checked="checked" value="SO2">
+	  <input type="radio" name="pollutant" checked="true" value="so2">
 	  <label>SO2</label>
 	</div>
 
 	<div class="ui radio checkbox">
-	  <input type="radio" name="pollutant" checked="checked" value="CO">
+	  <input type="radio" name="pollutant" value="co">
 	  <label>CO</label>
 	</div>
 
 	<div class="ui radio checkbox">
-	  <input type="radio" name="pollutant" checked="checked" value="O3">
+	  <input type="radio" name="pollutant" value="o3">
 	  <label>O3</label>
 	</div>
 
 	<div class="ui radio checkbox">
-	  <input type="radio" name="pollutant" checked="checked" value="PM10">
+	  <input type="radio" name="pollutant" value="pm10">
 	  <label>PM10</label>
 	</div>
 
 	<div class="ui radio checkbox">
-	  <input type="radio" name="pollutant" checked="checked" value="PM25">
+	  <input type="radio" name="pollutant" value="pm25">
 	  <label>PM2.5</label>
 	</div>
 
-	<div class="ui radio checkbox">
-	  <input type="radio" name="pollutant" checked="checked" value="NO2">
-	  <label>NO2</label>
-	</div>
 </div>
 <div class="ui segment">
 	<div id="container" width="1000" height="600"></div> 

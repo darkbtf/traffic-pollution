@@ -39,11 +39,12 @@ module.exports.routes = {
   '/traffic_cross': {
     view: 'trafficCross'
   },
-  '/traffic_pollution_model': {
-    view: 'trafficPollutionModel'
+  '/pollution_forecast': {
+    view: 'PollutionForecast'
   },
   'POST /trafficpollutionData': 'HomeController.trafficPollution',
-  'POST /trafficCrossData': 'HomeController.trafficCross'
+  'POST /trafficCrossData': 'HomeController.trafficCross',
+  'POST /pollutionForecastData': 'HomeController.pollutantPredict'
   // '/data2': 'HomeController.getData2'
 
   /***************************************************************************

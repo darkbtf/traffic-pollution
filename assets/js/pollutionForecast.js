@@ -10,14 +10,19 @@ $('.ui.checkbox').checkbox();
 
 var drawLineChart = function() { 
   // console.log(traffi);
-  var labels = traffic1.map(function(entry) {
+  var pollutantName = $('input[name="pollutant"]:checked').val();
+  var labels = forecast.map(function(entry) {
     return entry.week + ' 週 ' + entry.day + ' 日 ' + entry.hour + ' 時';
   });
-  var volume1 = traffic1.map(function(entry) {
-    return entry.total_volume;
+  var forecast_filtered = [];
+  for (var i = 0; i < forecast.length; ++i) {
+    if (forecast[i].measure == pollutantName) forecast_filtered.push(forecast[i]);
+  }
+  var test = forecast_filtered.map(function(entry) {
+    return entry.test_value;
   });
-  var volume2 = traffic2.map(function(entry) {
-    return entry.total_volume;
+  var predict = forecast_filtered.map(function(entry) {
+    return entry.predict_value;
   });
 
   $('#container').highcharts({
@@ -25,21 +30,15 @@ var drawLineChart = function() {
             zoomType: 'x'
         },
         title: {
-            text: $('#site').dropdown('get value')[0] + '監測站 vs ' + $('#district').dropdown('get value')[0] + '車流量'
+            text: $('#site').dropdown('get value')[0] + '空污預測'
         },
         xAxis: [{
             categories: labels,
             crosshair: true
         }],
-        yAxis: [{ // Primary yAxis
-            labels: {
-                format: '{value}',
-                style: {
-                    color: Highcharts.getOptions().colors[1]
-                }
-            },
+        yAxis: [{
             title: {
-                text: '車流量',
+                text: 'ppm',
                 style: {
                     color: Highcharts.getOptions().colors[1]
                 }
@@ -69,16 +68,16 @@ var drawLineChart = function() {
             backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
         },
         series: [{
-            name: 'QQ',
-            type: 'line',
-            yAxis: 1,
-            data: volume1
-
-        }, {
-            name: '車流量',
+            name: '實際值',
             type: 'line',
             yAxis: 0,
-            data: volume2
+            data: test
+
+        }, {
+            name: '預測值',
+            type: 'line',
+            yAxis: 0,
+            data: predict
         }]
     });
 };
@@ -90,16 +89,15 @@ var queryTraffic = function() {
 		$('.ui.dimmer').addClass('active');
 	}
 
-	var site = $('#site').dropdown('get value');
+	var site = $('#site').dropdown('get value')[0];
 
 	$.post('/pollutionForecastData', { site: site }, function(rawData) {
-	  traffic1 = rawData.traffic1;
-	  traffic2 = rawData.traffic2;
+	  forecast = rawData.forecast;
 	  drawLineChart();
-
 	  $('.ui.dimmer').removeClass('active');
 	  status = 'done';
 	});
 };
 
 $('#query-button').on('click', queryTraffic);
+$('input[name="pollutant"]').on('change', drawLineChart);
